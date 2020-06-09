@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/juqery.min.js"></script>
+	  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7"></script>
+	  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css"> 
+
+    <!--meta name="viewport" content="width=device-width, initial-scale=1" /-->
+    <link rel="stylesheet" href="./style.css"  media="1">
+    <title>weather</title>
+    <style>
+   /* #temp
+    {
+      color: darkcyan;
+    }*/
+    body
+    {
+      background-color: darkblue;
+    }
+    h2
+    {
+      margin: 0;
+    }
+    /*
+    .mainpanel  
+    {
+      background-color: darkblue;
+    }*/
+    </style>
+    <!-- Latest compiled and minified CSS -->
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  </head>
+
+<body>
+  <nav class="row" style="background: #337ab7; color: white;">
+    <h1 class="col-md-3 text-center" id="title">Weather App</h1>
+  </nav>
+  <br/>
+  
+  <div class="row">
+    <form method="post" class="col-md-6 col-md-offset-3">
+      <div class="input-group">
+        <input type="text" class="form-control" name="city" placeholder="Search for location">
+        <div class="input-group-btn">
+          <button class="btn btn-primary" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      <form>
+  </div>
+  <br/>
+
+  <!--div class="row" id="btngroup">
+    <div class="btn-group col-md-6 col-md-offset-4" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-secondary" id="btnhourly">HOURLY</button>
+      <button type="button" class="btn btn-secondary" id="btn36hours">36 HOURS</button>
+      <button type="button" class="btn btn-secondary" id="btn7days">7 DAYS</button>
+    </div>
+  </div>
+  <br/-->
+ 
+  <div class="mainpanel" style="height: 200px; border: 3px solid black;"">
+    {% if data.country_code and data.coordinate and data.temp and data.pressure and data.humidity %}
+    <div class="row" style="border: 1px solid black;">
+      <div class="col-md-6" style="margin: 0;">
+        <h2>{{data.country_code}}</h2>
+        <h5>Last updated: {{data.date}}</h5>
+        <!--h5>coordinate : {{data.coordinate}}</h5-->
+        <h1 id="temp">{{data.temp}}<span>&#8451;</span></h1>
+        <h5>Feels like: {{data.feelslike}}<span>&#8451;</span></h5>
+        
+      </div>
+      <div class="col-md-6">
+        {% if data.weatherdesc == "few clouds" or data.weatherdesc == "scattered clouds" or data.weatherdesc == "broken clouds"%}
+        <img src="{{url_for('static', filename='Few-Clouds.jpeg')}}" width="100" height="80"/>
+  <!--       style="background-color:transparent"/-->
+    
+        {% elif data.weatherdesc == "sunny" %}
+        <img src="{{url_for('static', filename='Sunny.png')}}" width="100" height="80"/>
+        
+        {% elif data.weatherdesc == "rain" or data.weatherdesc == "light rain" %}
+        <img src="{{url_for('static', filename='Rain.png')}}" width="100" height="80"/>
+        
+        {%else%}
+        <img src="{{url_for('static', filename='Sunny.png')}}" width="100" height="80"/>
+        {%endif%}
+        
+        <h4>{{data.weatherdesc}}</h4>
+        <h5>pressure : {{data.pressure}} </h5>
+        <h5>humidity : {{data.humidity}}</h5>
+      </div>   
+    <!--/div-->
+    {% endif %}
+  </div>
+
+  <div id="hourlyforcast">
+    <table>
+
+    </table>
+  </div>
+  <script type="text/javascript" src="index.js"></script>
+</body>
+
+</html>
